@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER Riccardo Manuelli 
+#MAINTAINER Riccardo Manuelli <riccardo.manuelli@karon.it>
 
 RUN yum -y install epel-release
 RUN yum -y install wget
@@ -12,9 +12,10 @@ RUN yum -y update
 RUN yum -y install php56u-fpm php56u php56u-opcache php56u-xml php56u-mcrypt php56u-gd php56u-devel php56u-mysql php56u-intl php56u-mbstring php56u-bcmath php56u-pecl-memcache
 
 # Installing mysql
-RUN yum -y install mysql-server mysql-client
+#RUN yum -y install mysql-server mysql-client
+RUN yum -y install mysql
 
-# Installing nginx 
+# Installing nginx
 RUN yum -y install nginx
 
 # Installing other utilities
@@ -26,13 +27,3 @@ COPY settings/php.d /etc/php.d
 # Adding the configuration file of the nginx
 COPY settings/nginx/conf.d /etc/nginx/conf.d
 ADD  settings/nginx/nginx.conf /etc/nginx/nginx.conf
-
-# make the webroot a volume
-VOLUME /var/www/html/
-
-EXPOSE 80
-
-VOLUME /var/lib/mysql
-
-EXPOSE 3306
-CMD ["mysqld"]
