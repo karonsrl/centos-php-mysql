@@ -1,5 +1,5 @@
 FROM centos:7
-#MAINTAINER Riccardo Manuelli <riccardo.manuelli@karon.it>
+#MAINTAINER Riccardo Manuelli 
 
 RUN yum -y install epel-release
 RUN yum -y install wget
