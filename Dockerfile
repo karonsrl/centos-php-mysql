@@ -1,5 +1,5 @@
 FROM centos:7
-#MAINTAINER Riccardo Manuelli 
+#MAINTAINER Riccardo Manuelli <riccardo.manuelli@karon.it>
 
 RUN yum -y install epel-release
 RUN yum -y install wget
@@ -27,3 +27,11 @@ COPY settings/php.d /etc/php.d
 # Adding the configuration file of the nginx
 COPY settings/nginx/conf.d /etc/nginx/conf.d
 ADD  settings/nginx/nginx.conf /etc/nginx/nginx.conf
+
+VOLUME /var/www/html
+VOLUME /var/lib/mysql
+
+
+EXPOSE 80
+EXPOSE 3306
+CMD ["mysqld"]
